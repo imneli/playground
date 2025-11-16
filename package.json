@@ -4,7 +4,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
-  "scripts": {
+  "ApiClient": {
     "dev": "nodemon --exec ts-node src/main.ts"
   },
   "dependencies": {

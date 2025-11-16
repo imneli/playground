@@ -1,6 +1,6 @@
-import { discordApi } from "../../../common/baseUrls";
+import { discordApiBaseUrl } from "../../../common/baseUrls";
 import { rl } from "../../../common/rl";
-import { question, Scripts } from "../../fetch";
+import { question, ApiClient } from "../../fetch";
 import "dotenv/config";
 
 const token = process.env.TOKEN;
@@ -10,7 +10,7 @@ export const getUser = async () => {
 
   console.log("\n searching user for:", id);
 
-  const fetchUrl = `${discordApi}/users/${id}`;
+  const fetchUrl = `${discordApiBaseUrl}/users/${id}`;
 
   if (!token) {
     console.error("### ERRO: token nao encontrado");
@@ -23,7 +23,7 @@ export const getUser = async () => {
   };
 
   try {
-    const user = await Scripts.fetchScript(fetchUrl, {
+    const user = await ApiClient.request(fetchUrl, {
       method: "GET",
       headers: headers,
     });

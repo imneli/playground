@@ -14,10 +14,10 @@ export interface FetchOptions {
   body?: any;
 }
 
-export class Scripts {
+export class ApiClient {
   private static _httpClient = new HttpClient();
 
-  public static async fetchScript<T>(
+  public static async request<T>(
     url: string,
     options: FetchOptions
   ): Promise<T> {

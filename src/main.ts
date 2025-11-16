@@ -1,8 +1,9 @@
-import { getUser } from "./methods/discord-api/get-user";
+import { startChat } from "./methods/gemini/chat";
+import { listModels } from "./methods/gemini/list-models";
 
 class Main {
   static async main() {
-    getUser()
+    startChat()
   }
 }
 

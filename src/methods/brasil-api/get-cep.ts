@@ -1,6 +1,6 @@
-import { brasilApi } from "../../../../common/baseUrls";
-import { rl } from "../../../../common/rl";
-import { question, Scripts } from "../../../fetch";
+import { brasilApiBaseUrl } from "../../../common/baseUrls";
+import { rl } from "../../../common/rl";
+import { question, ApiClient } from "../../fetch";
 
 // that api have two versions: v1 and v2
 
@@ -14,13 +14,13 @@ export const cep = async (version: string) => {
 
   console.log("\n searching for:", cep);
 
-  const fetchUrl = `${brasilApi}/cep/${version}/${cep}`;
+  const fetchUrl = `${brasilApiBaseUrl}/cep/${version}/${cep}`;
 
   try {
-    const cep = await Scripts.fetchScript(fetchUrl, { method: "GET" });
+    const cep = await ApiClient.request(fetchUrl, { method: "GET" });
     console.log("\nResultado:\n", cep);
   } catch (error: any) {
-    console.error("\nErro ao buscar banco:", error.message);
+    console.error("\nErro ao buscar:", error.message);
   }
 
   rl.close();
