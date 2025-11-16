@@ -1,4 +1,4 @@
-import { brasilApi } from "../../../common/baseUrl";
+import { brasilApi } from "../../../common/baseUrls";
 import { rl } from "../../../common/rl";
 import { question, Scripts } from "../../fetch";
 
@@ -12,7 +12,7 @@ export const dddMethod = async () => {
   const fetchUrl = `${brasilApi}/ddd/v1/${ddd}`;
 
   try {
-    const cities = await Scripts.fetchScript(fetchUrl, "GET");
+    const cities = await Scripts.fetchScript(fetchUrl, { method: "GET" });
     console.log("\nResultado:\n", cities);
   } catch (error: any) {
     console.error("\nErro ao buscar cidades:", error.message);

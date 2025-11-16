@@ -24,25 +24,47 @@ export class HttpClient {
     return await response.json();
   }
 
-  public async get<T>(url: string): Promise<T> {
-    return await this.request<T>(url, { method: "GET" });
+  public async get<T>(
+    url: string,
+    options?: { headers?: Record<string, string> }
+  ): Promise<T> {
+    return await this.request<T>(url, {
+      method: "GET",
+      headers: options?.headers,
+    });
   }
 
-  public async post<T>(url: string, body?: any): Promise<T> {
+  public async post<T>(
+    url: string,
+    body?: any,
+    options?: { headers?: Record<string, string> }
+  ): Promise<T> {
     return await this.request<T>(url, {
       method: "POST",
       body: body ? JSON.stringify(body) : undefined,
+      headers: options?.headers,
     });
   }
 
-  public async put<T>(url: string, body?: any): Promise<T> {
+  public async put<T>(
+    url: string,
+    body?: any,
+    options?: { headers?: Record<string, string> }
+  ): Promise<T> {
     return await this.request<T>(url, {
       method: "PUT",
       body: body ? JSON.stringify(body) : undefined,
+      headers: options?.headers,
     });
   }
 
-  public async delete<T>(url: string): Promise<T> {
-    return await this.request<T>(url, { method: "DELETE" });
+  public async delete<T>(
+    url: string,
+    options?: { headers?: Record<string, string> }
+  ): Promise<T> {
+    return await this.request<T>(url, {
+      method: "DELETE",
+      headers: options?.headers,
+    });
   }
 }

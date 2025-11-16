@@ -1,8 +1,8 @@
-import { cep } from "./methods/brasil-api/cep/cep";
+import { getUser } from "./methods/discord-api/get-user";
 
 class Main {
   static async main() {
-    cep("v2");
+    getUser()
   }
 }
 

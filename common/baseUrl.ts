@@ -1,1 +1,0 @@
-export const brasilApi = "https://brasilapi.com.br/api";
