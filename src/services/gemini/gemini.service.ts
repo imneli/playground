@@ -1,7 +1,7 @@
 import { rl } from "../../../common/rl";
 import { HttpClient } from "../../../lib/http-client";
 import { question } from "../../question";
-import { GeminiApiResponse, ListModelsResponse } from "./types";
+import { GeminiApiResponse, ListModelsResponse } from "../../types/gemini/types";
 
 export class GeminiService {
   constructor(
