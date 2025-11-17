@@ -1,36 +1,50 @@
 import { discordApiBaseUrl } from "../../../common/baseUrls";
 import { rl } from "../../../common/rl";
-import { question, ApiClient } from "../../fetch";
+import { question } from "../../fetch";
+import { HttpClient } from "../../../lib/http-client";
 import "dotenv/config";
 
-const token = process.env.TOKEN;
+export class DiscordUserService {
+  private readonly token: string | undefined;
 
-export const getUser = async () => {
-  const id = await question("Digite um Id de usuário: ");
+  private readonly httpClient: HttpClient;
 
-  console.log("\n searching user for:", id);
+  constructor() {
+    this.token = process.env.TOKEN;
 
-  const fetchUrl = `${discordApiBaseUrl}/users/${id}`;
+    this.httpClient = new HttpClient(discordApiBaseUrl);
 
-  if (!token) {
-    console.error("### ERRO: token nao encontrado");
-    rl.close();
-    return;
+    if (!this.token) {
+      console.error("### ERRO: token nao encontrado no .env");
+    }
   }
 
-  const headers = {
-    Authorization: `Bot ${token}`,
-  };
+  public async getUser() {
+    if (!this.token) {
+      console.error("### ERRO: O serviço não pode operar sem um token.");
+      rl.close();
+      return;
+    }
 
-  try {
-    const user = await ApiClient.request(fetchUrl, {
-      method: "GET",
-      headers: headers,
-    });
-    console.log("\nresult:\n", user);
-  } catch (error: any) {
-    console.error("\nErro ao buscar user:", error.message);
+    try {
+      const id = await question("Digite um Id de usuário: ");
+      console.log("\n searching user for:", id);
+
+      const endpoint = `/users/${id}`;
+
+      const headers = {
+        Authorization: `Bot ${this.token}`,
+      };
+
+      const user = await this.httpClient.get(endpoint, {
+        headers: headers,
+      });
+
+      console.log("\nresult:\n", user);
+    } catch (error: any) {
+      console.error("\nErro ao buscar user:", error.message);
+    } finally {
+      rl.close();
+    }
   }
-
-  rl.close();
-};
+}
