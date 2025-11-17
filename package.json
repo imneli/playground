@@ -5,7 +5,8 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "dev": "nodemon --exec ts-node src/main.ts"
+    "dev": "nodemon --exec ts-node src/main.ts",
+    "cli": "ts-node src/cli.ts"
   },
   "dependencies": {
     "dotenv": "^17.2.3"

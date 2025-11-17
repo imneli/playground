@@ -7,7 +7,7 @@ export class DddService {
   }
 
   public async getDdd() {
-    const input = await question("type a ddd:");
+    const input = await question("Digite um DDD:");
     const endpoint = `/ddd/v1/${input}`;
 
     try {

@@ -7,7 +7,7 @@ export class RegistroBrService {
   }
 
   public async getDomainInfo() {
-    const input = await question("digite um dominio: ");
+    const input = await question("Digite um dominio: ");
     const endpoint = `/registrobr/v1/${input}`;
 
     try {

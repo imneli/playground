@@ -7,7 +7,7 @@ export class VehicleService {
   }
 
   public async getVehiclePrice() {
-    const input = await question("digite um tipo de veiculo:");
+    const input = await question("Digite um tipo de veículo:");
     const endpoint = `/fipe/preco/v1/${input}`;
 
     try {
@@ -19,8 +19,8 @@ export class VehicleService {
   }
 
   public async getVehiclesByBrandAndType() {
-    const brandInput = await question("type a vehicle brand: ");
-    const typeInput = await question("type a type of vehicle: ");
+    const brandInput = await question("Digite a marca de um veículo: ");
+    const typeInput = await question("Digite o tipo de um veículo: ");
 
     const endpoint = `/fipe/veiculos/v1/${typeInput}/${brandInput}`;
 
