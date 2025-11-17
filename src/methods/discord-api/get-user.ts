@@ -1,18 +1,13 @@
-import { discordApiBaseUrl } from "../../../common/baseUrls";
 import { rl } from "../../../common/rl";
-import { question } from "../../fetch";
+import { question } from "../../question";
 import { HttpClient } from "../../../lib/http-client";
 import "dotenv/config";
 
 export class DiscordUserService {
   private readonly token: string | undefined;
 
-  private readonly httpClient: HttpClient;
-
-  constructor() {
+  constructor(private readonly httpClient: HttpClient) {
     this.token = process.env.TOKEN;
-
-    this.httpClient = new HttpClient(discordApiBaseUrl);
 
     if (!this.token) {
       console.error("### ERRO: token nao encontrado no .env");

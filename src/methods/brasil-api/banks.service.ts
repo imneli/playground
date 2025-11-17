@@ -1,21 +1,18 @@
-import { brasilApiBaseUrl } from "../../../common/baseUrls";
 import { rl } from "../../../common/rl";
 import { HttpClient } from "../../../lib/http-client";
-import { question } from "../../fetch";
+import { question } from "../../question";
 
 export class BanksService {
-  private readonly httpClient: HttpClient;
-
-  constructor() {
-    this.httpClient = new HttpClient(brasilApiBaseUrl);
+  constructor(private readonly httpClient: HttpClient) {
+    this.httpClient = httpClient;
   }
 
-  public async banks() {
-    const fetchUrl = `/banks/v1`;
+  public async getBanks() {
+    const endpoint = `/banks/v1`;
 
     try {
-      const banks = await this.httpClient.get(fetchUrl);
-      console.log("\nResultado:\n", banks);
+      const input = await this.httpClient.get(endpoint);
+      console.log("\nResultado:\n", input);
     } catch (error: any) {
       console.error("\n error to search banks:", error.message);
     }
@@ -23,15 +20,15 @@ export class BanksService {
     rl.close();
   }
 
-  public async bankByCode() {
-    const code = await question("Digite um código de banco: ");
+  public async getBankByCode() {
+    const input = await question("Digite um código de banco: ");
 
-    console.log("\n searching for:", code);
+    console.log("\n searching for:", input);
 
-    const fetchUrl = `/banks/v1/${code}`;
+    const endpoint = `/banks/v1/${input}`;
 
     try {
-      const bank = await this.httpClient.get(fetchUrl);
+      const bank = await this.httpClient.get(endpoint);
       console.log("\nResultado:\n", bank);
     } catch (error: any) {
       console.error("\nErro ao buscar banco:", error.message);
